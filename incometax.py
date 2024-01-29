@@ -1,25 +1,17 @@
 # Calculates income tax based on given income and tax rules.
 # Tax brackets and rates.
 # Calculate tax for each bracket.
-# Calculate tax for the remaining income. 4
+# Calculate tax for the remaining income. 
+# Using elif statement.
 
-def calculate_income_tax(taxable_income):
+income = 45000
 
-    brackets = [10000, 10000]
-    rates = [0, 0.1]
+tax_payable = 0
+if income <= 10000:
+    tax_payable = 0
+elif income <= 20000:
+    tax_payable = (income - 10000) * 0.1
+else:
+    tax_payable = 10000 * 0.1 + (income - 20000) * 0.2
 
-    tax = 0
-    for i in range(len(brackets)):
-      if taxable_income <= brackets[i]:
-        tax += taxable_income * rates[i]
-        break
-    else:
-      tax += brackets[i] * rates[i]
-      taxable_income -= brackets[i]
-
-    tax += taxable_income * rates[-1]
-    return tax
-
-taxable_income = 45000
-income_tax = calculate_income_tax(taxable_income)
-print(f"Income tax payable for ${taxable_income:,.2f} is ${income_tax:,.2f}")
+print("Total tax to pay is", tax_payable)
